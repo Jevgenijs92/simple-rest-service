@@ -15,7 +15,7 @@ import javax.validation.Valid;
 @Slf4j
 @RestController
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"${cors.allowed.origin}"})
 public class PersonController {
     private final PersonService personService;
 
