@@ -17,7 +17,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -40,13 +40,14 @@ public class PersonControllerUnitTest {
     private PersonControllerAdvice personControllerAdvice;
 
     private static final String PERSON_NOT_FOUND_EXCEPTION = "Person not found";
-    private static final String PERSON_FORM_NOT_VALID_EXCEPTION = "Validation exception";
+    private static final String PERSONAL_ID_NOT_PRESENT = "Required request parameter 'personalId' for method parameter type String is not present";
+    private static final String BIRTHDATE_NOT_PRESENT = "Required request parameter 'birthdate' for method parameter type LocalDate is not present";
 
     private static final String correctPersonalId = "25031982-35985";
     private static final String correctBirthdateStr = "1982-03-25";
 
 
-    private static final Date correctBirthdate = new Date(385862400000L);
+    private static final LocalDate correctBirthdate = LocalDate.of(1982, 3, 25);
     private static final JSONObject correctJsonResponse = new JSONObject();
     private static final PersonData correctPersonData = new PersonData(correctPersonalId,
             "Eleni", "Lawson", "female", correctBirthdate);
@@ -65,9 +66,6 @@ public class PersonControllerUnitTest {
     public void init() {
         when(personControllerAdvice.handlePersonNotFoundException(any()))
                 .thenReturn(PERSON_NOT_FOUND_EXCEPTION);
-
-        when(personControllerAdvice.handlePersonFormNotValidException(any()))
-                .thenReturn(PERSON_FORM_NOT_VALID_EXCEPTION);
     }
 
     @Test
@@ -128,7 +126,7 @@ public class PersonControllerUnitTest {
     public void whenGetRequestToPersonAndNoPersonalId_thenBadRequestResponse() throws Exception {
         getPersonByPersonalIdAndBirthdate(null, correctBirthdateStr)
                 .andDo(print())
-                .andExpect(content().string(PERSON_FORM_NOT_VALID_EXCEPTION));
+                .andExpect(content().string(PERSONAL_ID_NOT_PRESENT));
     }
 
     @Test
@@ -142,7 +140,7 @@ public class PersonControllerUnitTest {
     public void whenGetRequestToPersonAndNoBirthdate_thenBadRequestResponse() throws Exception {
         getPersonByPersonalIdAndBirthdate(correctPersonalId, null)
                 .andDo(print())
-                .andExpect(content().string(PERSON_FORM_NOT_VALID_EXCEPTION));
+                .andExpect(content().string(BIRTHDATE_NOT_PRESENT));
     }
 
     @Test
@@ -156,7 +154,7 @@ public class PersonControllerUnitTest {
     public void whenGetRequestToPersonWithoutData_thenBadRequestResponse() throws Exception {
         getPersonByPersonalIdAndBirthdate(null, null)
                 .andDo(print())
-                .andExpect(content().string(PERSON_FORM_NOT_VALID_EXCEPTION));
+                .andExpect(content().string(PERSONAL_ID_NOT_PRESENT));
     }
 
     public ResultActions getPersonByPersonalIdAndBirthdate(String personalId, String birthdate) throws Exception {

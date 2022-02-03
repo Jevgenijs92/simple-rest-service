@@ -9,7 +9,7 @@ import com.example.simplerestservice.person.services.PersonService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Service
@@ -20,7 +20,7 @@ public class PersonServiceImpl implements PersonService {
     private final PersonConverter personConverter;
 
     @Override
-    public PersonData getPersonByPersonalIdAndBirthdate(String personalId, Date birthdate) throws PersonNotFoundException {
+    public PersonData getPersonByPersonalIdAndBirthdate(String personalId, LocalDate birthdate) throws PersonNotFoundException {
         Person person = personRepository.findPersonByPersonalIdAndBirthdate(personalId, birthdate);
         if(Objects.isNull(person)){
             throw new PersonNotFoundException(personalId, birthdate);

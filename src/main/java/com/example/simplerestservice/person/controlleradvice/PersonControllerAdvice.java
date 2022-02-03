@@ -1,6 +1,5 @@
 package com.example.simplerestservice.person.controlleradvice;
 
-import com.example.simplerestservice.person.exceptions.PersonFormNotValidException;
 import com.example.simplerestservice.person.exceptions.PersonNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -21,12 +20,6 @@ public class PersonControllerAdvice {
         return "Person not found";
     }
 
-    @ResponseBody
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(PersonFormNotValidException.class)
-    public String handlePersonFormNotValidException(
-            PersonFormNotValidException ex) {
-        log.error("Person Form Not Valid exception occurred. Message: " + ex.getMessage());
-        return ex.getMessage();
-    }
+
+
 }

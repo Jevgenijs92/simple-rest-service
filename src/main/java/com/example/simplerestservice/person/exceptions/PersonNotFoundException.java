@@ -1,9 +1,9 @@
 package com.example.simplerestservice.person.exceptions;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 public class PersonNotFoundException extends RuntimeException {
-    public PersonNotFoundException(String personalId, Date birthdate) {
+    public PersonNotFoundException(String personalId, LocalDate birthdate) {
         super("Person with personal ID: " + personalId + ", birthdate: " + birthdate.toString() + " not found");
     }
 }

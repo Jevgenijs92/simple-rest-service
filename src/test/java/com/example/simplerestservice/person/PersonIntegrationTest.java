@@ -31,9 +31,9 @@ public class PersonIntegrationTest {
     private static final JSONObject correctJsonResponse = new JSONObject();
 
     private static final String PERSON_NOT_FOUND_EXCEPTION = "Person not found";
-    private static final String PERSON_FORM_NOT_VALID_EXCEPTION = "Person form data is not valid. " +
-            "Please make sure that personal ID (personalId) contains 14 symbols and " +
-            "birthdate (birthdate) has pattern of yyyy-MM-dd";
+    private static final String PERSONAL_ID_NOT_PRESENT = "Required request parameter 'personalId' for method parameter type String is not present";
+    private static final String BIRTHDATE_NOT_PRESENT = "Required request parameter 'birthdate' for method parameter type LocalDate is not present";
+
 
     @BeforeAll
     private static void setup() throws Exception {
@@ -94,7 +94,7 @@ public class PersonIntegrationTest {
     public void whenGetRequestToPersonAndNoPersonalId_thenBadRequestResponse() throws Exception {
         getPersonByPersonalIdAndBirthdate(null, correctBirthdate)
                 .andDo(print())
-                .andExpect(content().string(PERSON_FORM_NOT_VALID_EXCEPTION));
+                .andExpect(content().string(PERSONAL_ID_NOT_PRESENT));
     }
 
     @Test
@@ -108,7 +108,7 @@ public class PersonIntegrationTest {
     public void whenGetRequestToPersonAndNoBirthdate_thenBadRequestResponse() throws Exception {
         getPersonByPersonalIdAndBirthdate(correctPersonalId, null)
                 .andDo(print())
-                .andExpect(content().string(PERSON_FORM_NOT_VALID_EXCEPTION));
+                .andExpect(content().string(BIRTHDATE_NOT_PRESENT));
     }
 
     @Test
@@ -122,7 +122,7 @@ public class PersonIntegrationTest {
     public void whenGetRequestToPersonWithoutData_thenBadRequestResponse() throws Exception {
         getPersonByPersonalIdAndBirthdate(null, null)
                 .andDo(print())
-                .andExpect(content().string(PERSON_FORM_NOT_VALID_EXCEPTION));
+                .andExpect(content().string(PERSONAL_ID_NOT_PRESENT));
     }
 
     public ResultActions getPersonByPersonalIdAndBirthdate(String personalId, String birthdate) throws Exception {

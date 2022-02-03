@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -14,5 +14,5 @@ public class PersonData {
     private String firstName;
     private String lastName;
     private String gender;
-    private Date birthdate;
+    private LocalDate birthdate;
 }

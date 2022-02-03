@@ -4,7 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "person")
@@ -44,6 +44,6 @@ public class Person {
 
     @Column
     @NotBlank(message = "Birthdate is mandatory")
-    private Date birthdate;
+    private LocalDate birthdate;
 
 }
