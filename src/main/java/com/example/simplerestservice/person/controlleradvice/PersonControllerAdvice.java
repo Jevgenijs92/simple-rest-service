@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @Slf4j
 public class PersonControllerAdvice {
 
+    @SuppressWarnings("SameReturnValue")
     @ResponseBody
     @ExceptionHandler(PersonNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)

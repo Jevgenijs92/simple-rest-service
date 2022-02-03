@@ -1,12 +1,4 @@
 <configuration>
-<!--    <appender name="db" class="ch.qos.logback.classic.db.DBAppender">-->
-<!--        <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">-->
-<!--            <driverClass>org.h2.Driver</driverClass>-->
-<!--            <url>jdbc:h2:file:./data/rest-service</url>-->
-<!--            <user>sa</user>-->
-<!--            <password>password</password>-->
-<!--        </connectionSource>-->
-<!--    </appender>-->
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
             <Pattern>

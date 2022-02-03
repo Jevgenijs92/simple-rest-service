@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 
+@SuppressWarnings("unused")
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long> {
     Person findPersonByPersonalIdAndBirthdate(String personalId, LocalDate birthdate);
