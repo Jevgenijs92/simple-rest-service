@@ -1,3 +1,13 @@
+CREATE TABLE hibernate_sequence
+(
+    next_val BIGINT
+);
+
+INSERT INTO hibernate_sequence
+VALUES (1);
+
+CREATE SEQUENCE hibernate_sequence;
+
 CREATE TABLE person (
     id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     personal_id VARCHAR(14) NOT NULL UNIQUE,
