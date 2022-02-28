@@ -5,9 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @SuppressWarnings("unused")
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long> {
-    Person findPersonByPersonalIdAndBirthdate(String personalId, LocalDate birthdate);
+    Optional<Person> findPersonByPersonalIdAndBirthdate(String personalId, LocalDate birthdate);
 }

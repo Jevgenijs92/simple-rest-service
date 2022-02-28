@@ -32,7 +32,6 @@ public class PersonController {
     public ResponseEntity<PersonData> getPersonByPersonalIdAndBirthdate(
             @RequestParam(name = "personalId")
             @Length(min = 14, max = 14, message = "Personal ID must be exactly 14 symbols") String personalId,
-
             @RequestParam(name = "birthdate") @NotNull(message = "Birthdate must be not null")
             @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate birthdate) {
 
